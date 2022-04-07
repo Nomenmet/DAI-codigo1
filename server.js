@@ -6,7 +6,19 @@ const port = 3000
 app.use(express.json());
 
 app.post('/', (req, res) => {
-    console.log(req.body);
+
+    let arrReq = req.body;
+
+    arrReq.forEach(element => {
+
+        if(element % 2 == 1 || element % 2 == -1){
+
+            console.log(element);
+
+        }
+        
+    });
+    
   res.end()
 })
 
