@@ -35,7 +35,7 @@ let segundoMayorImpar = (arrayReq)=>{
     
     arrayReq.forEach(element => {
 
-        if(element % 2 == 1 || element % 2 == -1){
+        if(element % 2 !== 0){
 
             ordenFin.push(element);
             
@@ -43,8 +43,9 @@ let segundoMayorImpar = (arrayReq)=>{
         
     });
     
+    ordenFin = ordenFin.reverse()
 
-    return ordenFin[ordenFin.length -2];
+    return ordenFin[1];
 
 }
 
