@@ -5,21 +5,15 @@ const port = 3000
 
 app.use(express.json());
 
+////////////////
+
 app.post('/', (req, res) => {
 
-    let arrReq = req.body;
+    let numConsigna = segundoMayorImpar(req.body);
 
-    arrReq.forEach(element => {
+    console.log(segundoMayorImpar(req.body));
 
-        if(element % 2 == 1 || element % 2 == -1){
-
-            console.log(element);
-
-        }
-        
-    });
-    
-  res.end()
+    res.send(parseData(numConsigna))
 })
 
 app.listen(port, (err) => {
@@ -27,3 +21,36 @@ app.listen(port, (err) => {
 
     console.log(`Example app listening on port ${port}`)
 })
+
+
+
+
+
+// Extra functions
+
+let segundoMayorImpar = (arrayReq)=>{
+
+    let ordenFin = [];
+    arrayReq = arrayReq.sort(function(a,b){return a - b;})
+    
+    arrayReq.forEach(element => {
+
+        if(element % 2 == 1 || element % 2 == -1){
+
+            ordenFin.push(element);
+            
+        }
+        
+    });
+    
+
+    return ordenFin[ordenFin.length -2];
+
+}
+
+let parseData = (num)=>{
+
+    return { resultado:num,}
+
+
+}
