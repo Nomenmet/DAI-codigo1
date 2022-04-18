@@ -19,11 +19,12 @@ function bisiestos (hastaAnio){
 
 }
 
-bisiestos(2150);
+//bisiestos(2150);
 
 //falta terminar
 function barajaPoker(){
 
+    /*
     const carta = {
 
         numero:null,
@@ -31,34 +32,68 @@ function barajaPoker(){
         palo:null,
 
     }
-
+    */
     let baraja = []
 
 
 
     for(i=1; i<=52; i++){
 
-        let paloP = "";
+        let palo = "";
+        let color = "";
+        let numero;
 
         switch(i%4){
 
             case 0:
-                paloP = "pica";
+                palo = "pica";
+                color = "negro";
+                numero = Math.ceil(i/4);
                 break;
             
             case 1:
-                paloP = "trebol";
+                palo = "trebol";
+                color = "negro";
+                numero = Math.ceil(i/4);
                 break;
 
             case 2:
-                paloP = "corazon";
+                palo = "corazon";
+                color = "rojo";
+                numero = Math.ceil(i/4);
                 break;
             
             case 3: 
-                paloP = "diamante";
+                palo = "diamante";
+                color = "rojo";
+                numero = Math.ceil(i/4);
                 break;
                 
         }
+
+        baraja.push({palo,color,numero,})
+
+
+
+    }
+
+    
+    baraja = baraja.map()
+
+    console.log(baraja);
+
+
+
+}
+
+// cambia a j q y k
+
+function cambioJQK(carta){
+
+    switch(carta.numero){
+
+        case 11:
+            // a terminar, los casos cambian 11, 12, 13 a j q y k
 
 
 
@@ -67,3 +102,6 @@ function barajaPoker(){
 
 
 }
+
+
+barajaPoker()
