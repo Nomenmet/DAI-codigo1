@@ -23,7 +23,7 @@ app.post('/iniciar_juego', (req,res) =>{
 
     let bing = iniciarJuego(bod.cantJugadores);
 
-
+    res.send(bing);
 
 
 })
@@ -77,21 +77,31 @@ function carton(){
 
     for(i=0; i <= 9; i++){
 
-        let flagNuevo = 
+        let flagNuevo = true;
 
-        carton.forEach(element => {
+        while(flagNuevo){
 
-            if(element != Math.floor( Math.random() * 100  ))
-            
-        });
+            let randomy = Math.floor( Math.random() * 100  );
+            if( !carton.some(element => element == randomy) ){
 
-        //resolver despues, hay que fijarse que no se repitan numeros aleatorios.
+                carton.push(randomy);
+                flagNuevo = false;
 
-        carton.push(Math.floor( Math.random() * 100  ));
+            }
+
+        }
 
 
 
     }
 
     return carton;
+}
+
+function asignarCarton(cartones, jugador){
+
+    //aca hay que asignarle a cada carton un jugador que entra por parametro, al final queda un array de objetos con cada objeto un jugador y un carton
+
+
+
 }
