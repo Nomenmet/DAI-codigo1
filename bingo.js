@@ -82,7 +82,7 @@ app.get('/sacar_numero', (req,res) =>{
 
         res.send("no gano nadie");
 
-
+        //terminar
     }
 
 });
@@ -207,14 +207,14 @@ function sacarNumero (cartones,numero){
     const huboBingo = false;
     const cartonesCheckeados = [];
 
-    for(let carton of cartones)  {
-        
-        carton.forEach(num => {
+    for(let cartonO of cartones)  {
+
+        cartonO.carton.forEach(num => {
             if (num === numero)
                 num = "checked";
         })
         
-        if(carton.every(element => {element=="checked"}))
+        if(cartonO.carton.every(element => {element=="checked"}))
             return "hizo bingo: " + element.jugador;
     }
 }
