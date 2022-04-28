@@ -30,7 +30,7 @@ app.post('/iniciar_juego', (req,res) =>{
 
 
 
-    bingo = iniciarJuego(bod.cantJugadores);
+    bingo = iniciarJuego(bod.cantJugadores-1);
 
     res.send(bingo);
 
@@ -53,17 +53,39 @@ app.get('/obtener_carton', (req,res) =>{
 
 app.get('/cartones', (req,res) => {
 
-    numCarton = req.query.numC;
+    nombreJugador = req.query.nj;
 
-    if(numCarton == "" || numCarton == undefined){
+
+
+    if(nombreJugador == "" || nombreJugador == undefined){
 
         res.send(bingo);
     }else{
-        res.send(bingo[numCarton]);
+
+        res.send(encontrarCarton(bingo,nombreJugador));
     }
 
 
 })
+
+app.get('/sacar_numero', (req,res) =>{
+
+    let resultado = sacarNumero(bingo, aleatorio(100))
+
+    if(typeof resultado == "string"){
+
+        res.send(resultado);
+
+    }else{
+
+        bingo = resultado;
+
+        res.send("no gano nadie");
+
+
+    }
+
+});
 
 app.listen(port, (err) => {
     if (err){console.log(err);}
@@ -71,7 +93,6 @@ app.listen(port, (err) => {
     console.log(`Example app listening on port ${port}`)
 })
 
-///////////////
 
 function aleatorio(max){
 
@@ -151,8 +172,49 @@ function asignarCarton(cartones, jugador){
 
     }
 
-    //aca hay que asignarle a cada carton un jugador que entra por parametro, al final queda un array de objetos con cada objeto un jugador y un carton
+    //a
 
     return cartones;
 
+}
+
+function encontrarCarton(cartones, jugadorPasado){
+
+    let cartonGanador =[];
+    let noSeEncontro = true;
+
+    cartones.forEach(element => {
+
+       if(element.jugador == jugadorPasado){
+
+        noSeEncontro = false;
+        cartonGanador = element;
+        
+       }
+        
+    });
+
+    if(noSeEncontro){
+        return "no se encontro";
+    }else{
+
+        return cartonGanador;
+    }
+}
+
+function sacarNumero (cartones,numero){
+
+    const huboBingo = false;
+    const cartonesCheckeados = [];
+
+    for(let carton of cartones)  {
+        
+        carton.forEach(num => {
+            if (num === numero)
+                num = "checked";
+        })
+        
+        if(carton.every(element => {element=="checked"}))
+            return "hizo bingo: " + element.jugador;
+    }
 }
