@@ -214,7 +214,11 @@ function sacarNumero (cartones,numero){
                 num = "checked";
         })
         
-        if(cartonO.carton.every(element => {element=="checked"}))
+        if(cartonO.carton.every(element => {element=="checked"})){
             return "hizo bingo: " + element.jugador;
+        }else{
+            return // aca hay que hacer return de bingo cambiado (cartones?)
+        }
     }
 }
+
