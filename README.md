@@ -1,3 +1,3 @@
 "# DAI-codigo1" 
 
-none manzaniu dageq s
+none manzaniu dageq se
