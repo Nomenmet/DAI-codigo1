@@ -158,13 +158,19 @@ function carton(){
 
 function asignarCarton(cartones, jugador){
 
-    noPaso = true;
+    
+
+    let noPaso = true;
+
+    let cuentaJugador = 0;
 
     for(i=0; i < cartones.length; i++){
 
-        if( Array.isArray( cartones[i] ) && noPaso){
+        if( Array.isArray( cartones[i] )){
 
-            cartones[i] = {"jugador":jugador, "carton":cartones[i],}
+            cartones[i] = {"jugador":jugador[cuentaJugador], "carton":cartones[i],}
+
+            cuentaJugador++;
 
             noPaso = false;
 
@@ -209,16 +215,20 @@ function sacarNumero (cartones,numero){
 
     for(let cartonO of cartones)  {
 
-        cartonO.carton.forEach(num => {
-            if (num === numero)
-                num = "checked";
-        })
+
+        for(v = 0; v < cartonO.carton.length; v++){
+            if (cartonO.carton[v] === numero)
+            cartonO.carton[v] = "checked";
+        }
         
         if(cartonO.carton.every(element => {element=="checked"})){
             return "hizo bingo: " + element.jugador;
-        }else{
-            return // aca hay que hacer return de bingo cambiado (cartones?)
         }
+            // aca hay que hacer return de bingo cambiado (cartones?)
+        
     }
+
+    return cartones;
+
 }
 
